@@ -25,3 +25,15 @@ All the `.scss` files are in the `scss` folder, after you compile it, the `.css`
 If you want to see the result in the browser (we have a simple express server to serve our files):
 
 `$ npm start`
+
+---
+
+## What is approach?
+
+In this example we talked about
+
+1. Imports
+2. Variables
+3. Nesting
+4. Mixin
+5. Extends
