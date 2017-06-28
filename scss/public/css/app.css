@@ -1,0 +1,35 @@
+/* -------- Imports -------- */
+h1 {
+  text-transform: none; }
+
+/* -------- Variables -------- */
+body {
+  font-size: 16px;
+  background-color: #f3f3f3; }
+
+/* -------- Nesting -------- */
+ul {
+  margin: 0; }
+  ul a {
+    color: #999; }
+    ul a:hover {
+      color: #229ed3; }
+
+/* -------- Mixin -------- */
+h1 {
+  border: 5px solid #ddd; }
+  h1:hover {
+    border-color: #999; }
+
+/* -------- Extends -------- */
+.block, p, ol {
+  margin: 30px 5px; }
+
+p {
+  border: 1px solid #404040; }
+
+ol {
+  color: #333;
+  text-transform: uppercase; }
+
+/*# sourceMappingURL=app.css.map */
