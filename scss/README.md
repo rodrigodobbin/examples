@@ -26,9 +26,7 @@ If you want to see the result in the browser (we have a simple express server to
 
 `$ npm start`
 
----
-
-## What is approach?
+## What is covered here?
 
 In this example we talked about
 
