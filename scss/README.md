@@ -18,7 +18,7 @@ To run the compiler, transform the `scss/app.scss`file into css and watch the co
 
 `$ grunt watch`
 
-All the `scss` code are in the `scss` folder, after you compile it, the `css` code will be in the `public/css` folder.
+All the `.scss` files are in the `scss` folder, after you compile it, the `.css` file will be in the `public/css` folder.
 
 ---
 
