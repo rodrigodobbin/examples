@@ -10,11 +10,11 @@ Now that you have Grunt installed and are in this path, let's install the npm de
 
 ---
 
-- To run the compiler and transform the `scss/app.scss` file into css:
+To run the compiler and transform the `scss/app.scss` file into css:
 
 `$ grunt sass`
 
-- To run the compiler, transform the `scss/app.scss`file into css and watch the code that your are doing:
+To run the compiler, transform the `scss/app.scss`file into css and watch the code that your are doing:
 
 `$ grunt watch`
 
