@@ -1,0 +1,43 @@
+<div class="col-lg-12 col-md-12">
+  <table class="table table-condensed table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Quantidade</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="cerveja in home.cervejas" ng-class="{'danger': cerveja.quantidade <= 0}">
+        <td>{{cerveja.nome}}</td>
+        <td>{{cerveja.descricao}}</td>
+        <td>{{cerveja.quantidade}}</td>
+        <td><a href="#" ng-click="home.vender(cerveja.id)">Vender</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="col-lg-12 col-md-12">
+  <form>
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input type="text" class="form-control" id="nome" placeholder="Nome" ng-model="home.candidato.nome">
+    </div>
+    <div class="form-group">
+      <label for="vaga">Vaga</label>
+      <input type="text" class="form-control" id="vaga" placeholder="Vaga" ng-model="home.candidato.vaga">
+    </div>
+    <div class="form-group">
+      <label for="salario">Salario</label>
+      <input type="text" class="form-control" id="salario" placeholder="Salario" ng-model="home.candidato.salario">
+    </div>
+  </form>
+
+  <p><strong>Meu nome é:</strong> {{home.candidato.nome}}</p>
+  <p><strong>Quero me candidatar para vaga de:</strong> {{home.candidato.vaga}}</p>
+  <p><strong>Pretensão salarial:</strong> {{home.candidato.salario | currency}}</p>
+  <p><strong>Pretensão salarial Quase REAL:</strong> {{home.candidato.salario | currency : "R$"}}</p>
+  <p><strong>Pretensão salarial REAL:</strong> {{home.candidato.salario | real}}</p>
+</div>

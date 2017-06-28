@@ -1,0 +1,76 @@
+/* -------- Imports -------- */
+
+// @import "arquivo.scss";
+
+/* -------- Variables -------- */
+
+$lightGrey: #f3f3f3;
+$font-size: 16px;
+
+body {
+  font-size: $font-size;
+  background-color: $lightGrey;
+}
+
+// body {
+//     font-size: 16px;
+//     background-color: #f3f3f3;
+// }
+
+/* -------- Nesting -------- */
+
+$link-color: #999;
+$link-hover: #229ed3;
+
+ul {
+  margin: 0;
+  a {
+    color: $link-color;
+    &:hover {
+      color: $link-hover;
+    }
+  }
+}
+
+// ul { margin: 0; }
+// ul a { color: #999; }
+// ul a:hover { color: #229ed3; }
+
+/* -------- Mixin -------- */
+
+@mixin bordered($width) {
+  border: $width solid #ddd;
+
+  &:hover {
+    border-color: #999;
+  }
+}
+
+h1 {
+  @include bordered(5px);
+}
+
+// h1 { border: 5px solid #ddd; }
+// h1:hover { border-color: #999; }
+
+
+/* -------- Extends -------- */
+
+.block {
+  margin: 30px 5px;
+}
+
+p {
+  @extend .block;
+  border: 1px solid #404040;
+}
+
+ol {
+  @extend .block;
+  color: #333;
+  text-transform: uppercase;
+}
+
+// .block, p, ol { margin: 10px 5px; }
+// p { border: 1px solid #404040; }
+// ol { color: #333; text-transform: uppercase; }
