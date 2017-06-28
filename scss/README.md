@@ -1,6 +1,6 @@
 # SCSS
 
-To run the example you will need [GruntJS](https://gruntjs.com/) installed in your machine.
+To run the example you will need [Grunt](https://gruntjs.com/) installed in your machine.
 
 `$ npm install -g grunt-cli`
 

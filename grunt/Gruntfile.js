@@ -6,9 +6,9 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true, // Set to true to enable the properties below
-          cwd: './sass',
+          cwd: './scss',
           src: '<%= pkg.name %>.scss',
-          dest: './build/css',
+          dest: './public/css',
           ext: '.css'
         }]
       }
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
     cssmin: {
       target: {
         files: {
-          'build/css/<%= pkg.name %>.min.css': './build/css/app.css'
+          'public/css/<%= pkg.name %>.min.css': './public/css/app.css'
         }
       }
     }
