@@ -28,7 +28,7 @@ If you want to see the result in the browser (we have a simple express server to
 
 ## What is covered here?
 
-In this example we talked about
+In this example we can see:
 
 1. Imports
 2. Variables
