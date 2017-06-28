@@ -22,6 +22,6 @@ All the `.scss` files are in the `scss` folder, after you compile it, the `.css`
 
 ---
 
-If you want to see the code in the browser (we have a simple express server to serve our files):
+If you want to see the result in the browser (we have a simple express server to serve our files):
 
 `$ npm start`
