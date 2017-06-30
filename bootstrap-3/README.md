@@ -18,7 +18,7 @@ make your layout responsive.
 
 If you want to see the result in the browser (we have a simple express server to serve our files):
 
-`$ npm install`
+`$ npm install` <br>
 `$ npm start`
 
 ## What is covered here?
