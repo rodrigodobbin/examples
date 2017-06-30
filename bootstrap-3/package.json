@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dobbinx3/exemplos"
+    "url": "git+https://github.com/dobbinx3/examples"
   },
   "author": "Dobbinx3",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dobbinx3/exemplos/issues"
+    "url": "https://github.com/dobbinx3/examples/issues"
   },
-  "homepage": "https://github.com/dobbinx3/exemplos#readme",
+  "homepage": "https://github.com/dobbinx3/examples/tree/master/bootstrap-3#readme",
   "devDependencies": {
     "express": "^4.15.3"
   }
