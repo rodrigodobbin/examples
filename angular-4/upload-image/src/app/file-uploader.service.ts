@@ -10,7 +10,7 @@ export class FileUploaderService {
   constructor(private http: Http) { }
 
   public uploadImage(formdata: any ) {
-    let url: string = 'http://localhost/examples/angular-4upload-image/api/fileUpload.php';
+    let url: string = 'http://localhost/examples/angular-4/upload-image/api/fileUpload.php';
     return this.http.post(url, formdata)
       .catch(this._errorHandler);
   }
