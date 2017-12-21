@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-inovando-com-javascript-no-backend",
+  "version": "1.0.0",
+  "description": "Curso no alura, Node.js: Inovando com Javascript no Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dobbinx3/alura/tree/master/nodejs-inovando-com-javascript-no-backend"
+  },
+  "author": "Dobbinx3 <dobbinx3@gmail.com> (https://github.com/dobbinx3)",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-load": "^1.1.16",
+    "express-validator": "^4.3.0",
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0"
+  }
+}
