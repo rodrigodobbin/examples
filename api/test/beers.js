@@ -1,7 +1,7 @@
 let express = require('../config/express')();
 let request = require('supertest')(express);
 
-describe('#ProdutosController', () => {
+describe('#BeersController', () => {
 
   it('#Listagem deve ser um json', (done) => {
     request
@@ -10,4 +10,5 @@ describe('#ProdutosController', () => {
       .expect('Content-Type', /json/)
       .expect(200, done);
   });
+  
 });
