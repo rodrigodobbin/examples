@@ -2,8 +2,8 @@ let http = require('http');
 
 let options = {
   hostname: 'localhost',
-  port: 3000,
-  path: '/produtos',
+  port: 3080,
+  path: '/beers/create',
   method: 'post',
   headers: {
     'Accept': 'application/json',
@@ -19,9 +19,13 @@ let client = http.request(options, (res) => {
 });
 
 let produto = {
-  titulo: 'Titulo do terminal',
+  marca: 'marca',
+  titulo: 'titulo',
   descricao: 'Um livro vindo do terminal',
-  preco: 120
+  preco: 22,
+  quantidade: 200, 
+  tipo: 'Lata', 
+  volume: 355
 };
 
 client.end(JSON.stringify(produto));

@@ -9,6 +9,11 @@ BeersService.prototype.getAll = function (callback) {
   this._connection.end();
 }
 
+BeersService.prototype.create = function (item, callback) {
+  this._beersDAO.create(item, callback);
+  this._connection.end();
+}
+
 module.exports = () => {
   return BeersService;
 }
