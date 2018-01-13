@@ -61,4 +61,49 @@ module.exports = (app) => {
       });
     });
   });
+
+  // Remove a beer
+  app.post('/beers/remove', [
+    check('id')
+      .isLength({ min: 1 })
+      .withMessage('O id é obrigatório.')
+      .isInt()
+      .withMessage('Id inválido')
+
+  ], (req, res, next) => {
+    let BeersService = new app.services.BeersService(app);
+    let item = req.body;
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.mapped() });
+    }
+
+    BeersService.remove(item, (err, result) => {
+      if (err) next(err);
+      res.format({
+        json: () => res.json(result)
+      });
+    });
+  });
+
+  // Get a beer detail
+  app.get('/beers/:id', (req, res, next) => {
+    let BeersService = new app.services.BeersService(app);
+    let id = req.params.id;
+    
+    BeersService.getBeer(id, (err, result) => {
+      if (err) next(err);
+      res.format({
+        json: () => res.json(result)
+      });
+    });
+  });
+
+  // Selling a beer
+  // TODO
+  // Support To sell multiple beers at one time (cart sell)
+
+  // Edit a beer info
+  // TODO
 }

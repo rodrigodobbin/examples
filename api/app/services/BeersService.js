@@ -14,6 +14,16 @@ BeersService.prototype.create = function (item, callback) {
   this._connection.end();
 }
 
+BeersService.prototype.remove = function (item, callback) {
+  this._beersDAO.remove(item, callback);
+  this._connection.end();
+}
+
+BeersService.prototype.getBeer = function (id, callback) {
+  this._beersDAO.getBeer(id, callback);
+  this._connection.end();
+}
+
 module.exports = () => {
   return BeersService;
 }
