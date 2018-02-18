@@ -2,137 +2,144 @@ let express = require('../config/express')();
 let request = require('supertest')(express);
 let assert = require('assert');
 
-describe('GET /beers', () => {
+describe('GET /beer', () => {
   it('#A Listagem deve ser um json', (done) => {
     request
-      .get('/beers')
+      .get('/beer')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
+  });
+
+  it('#A Listagem deve aceitar query params', (done) => {
+    request
+      .get('/beer?status=Ativo')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
   });
 });
 
-describe('POST /beers/create', () => {
+describe('POST /beer', () => {
   it('#Cadastro de nova cerveja sem marca', (done) => {
     request
-      .post('/beers/create')
+      .post('/beer')
       .set('Accept', 'application/json')
       .send({marca: '', titulo: 'titulo teste', descricao: 'testando mocha', preco: 22, quantidade: 200, tipo: 'Lata', volume: 355})
-      .expect(422, done);
+      .expect(400, done);
       
   });
 
   it('#Cadastro de nova cerveja sem titulo', (done) => {
     request
-      .post('/beers/create')
+      .post('/beer')
       .set('Accept', 'application/json')
       .send({marca: 'marca teste', titulo: '', descricao: 'testando mocha', preco: 22, quantidade: 200, tipo: 'Lata', volume: 355})
-      .expect(422, done);
+      .expect(400, done);
   });
 
   it('#Cadastro de nova cerveja sem preço', (done) => {
     request
-      .post('/beers/create')
+      .post('/beer')
       .set('Accept', 'application/json')
       .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: '', quantidade: 200, tipo: 'Lata', volume: 355})
-      .expect(422, done);
+      .expect(400, done);
   });
 
   it('#Cadastro de nova cerveja com o preço em formato inválido', (done) => {
     request
-      .post('/beers/create')
+      .post('/beer')
       .set('Accept', 'application/json')
       .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 'abcde', quantidade: 200, tipo: 'Lata', volume: 355})
-      .expect(422, done);
+      .expect(400, done);
   });
 
   it('#Cadastro de nova cerveja sem quantidade', (done) => {
     request
-      .post('/beers/create')
+      .post('/beer')
       .set('Accept', 'application/json')
       .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: '', tipo: 'Lata', volume: 355})
-      .expect(422, done);
+      .expect(400, done);
   });
 
   it('#Cadastro de nova cerveja com a quantidade em formato inválido', (done) => {
     request
-      .post('/beers/create')
+      .post('/beer')
       .set('Accept', 'application/json')
       .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: 'abcde', tipo: 'Lata', volume: 355})
-      .expect(422, done);
+      .expect(400, done);
   });
 
   it('#Cadastro de nova cerveja sem tipo', (done) => {
     request
-      .post('/beers/create')
+      .post('/beer')
       .set('Accept', 'application/json')
       .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: 200, tipo: '', volume: 355})
-      .expect(422, done);
+      .expect(400, done);
   });
 
   it('#Cadastro de nova cerveja sem volume', (done) => {
     request
-      .post('/beers/create')
+      .post('/beer')
       .set('Accept', 'application/json')
       .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: 200, tipo: 'Lata', volume: ''})
-      .expect(422, done);
+      .expect(400, done);
   });
 
   it('#Cadastro de nova cerveja com o volume em formato inválido', (done) => {
     request
-      .post('/beers/create')
+      .post('/beer')
       .set('Accept', 'application/json')
       .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: 200, tipo: 'Lata', volume: 'abcd'})
-      .expect(422, done);
+      .expect(400, done);
   });
 
   it('#Cadastro de nova cerveja sem descricao', (done) => {
     request
-      .post('/beers/create')
+      .post('/beer')
       .set('Accept', 'application/json')
       .send({marca: 'marca teste', titulo: 'titulo sem descricao', descricao: '', preco: 123, quantidade: 200, tipo: 'Lata', volume: 250})
-      .expect(200, done);
+      .expect(201, done);
   });
 
   it('#Cadastro de nova cerveja com dados válidos', (done) => {
     request
-      .post('/beers/create')
+      .post('/beer')
       .set('Accept', 'application/json')
       .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: 200, tipo: 'Lata', volume: 355})
-      .expect(200, done);
+      .expect(201, done);
   });
 });
 
-describe('POST /beers/remove', () => {
-  it('#Remove uma cerveja sem id', (done) => {
+describe('PATCH /beer/:id', () => {
+  it('#Atualiza o status de uma cerveja com id em formato inválido', (done) => {
     request
-      .post('/beers/remove')
+      .patch('/beer/12sdxx')
       .set('Accept', 'application/json')
-      .send({id: ''})
-      .expect(422, done);
+      .expect(400, done);
   });
 
-  it('#Remove uma cerveja com id em formato inválido', (done) => {
+  it('#Atualiza o status de uma cerveja sem status', (done) => {
     request
-      .post('/beers/remove')
+      .patch('/beer/91')
       .set('Accept', 'application/json')
-      .send({id: '12sdxx'})
-      .expect(422, done);
+      .send({status: ''})
+      .expect(400, done);
   });
 
   it('#Remove uma cerveja com dados válidos', (done) => {
     request
-      .post('/beers/remove')
+      .patch('/beer/91')
       .set('Accept', 'application/json')
-      .send({id: 2})
+      .send({status: 'Inativo'})
       .expect(200, done);
   });
 });
 
-describe('GET /beers/:id', () => {
+describe('GET /beer/:id', () => {
   it('#O retorno deve ser um json', (done) => {
     request
-      .get('/beers/3')
+      .get('/beer/91')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
@@ -140,7 +147,7 @@ describe('GET /beers/:id', () => {
 
   it('#Deve retornar apenas um resultado', (done) => {
     request
-      .get('/beers/1')
+      .get('/beer/91')
       .set('Accept', 'application/json')
       .expect(200)
       .then(response => {
@@ -149,27 +156,110 @@ describe('GET /beers/:id', () => {
       });
   });
 
-  it('#Deve retornar um array vazio quando id em formato inválido', (done) => {
+  it('#Deve retornar um erro quando id em formato inválido', (done) => {
     request
-      .get('/beers/abcde')
+      .get('/beer/abcde')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect(200)
-      .then(response => {
-        assert.equal(response.body.length, 0);
-        done();
-      });
+      .expect(400, done);
+  });
+});
+
+describe('PUT /beer/:id', () => {
+  it('#Atualiza uma cerveja sem marca', (done) => {
+    request
+      .put('/beer/91')
+      .set('Accept', 'application/json')
+      .send({marca: '', titulo: 'titulo teste', descricao: 'testando mocha', preco: 22, quantidade: 200, tipo: 'Lata', volume: 355, status: 'Ativo'})
+      .expect(400, done);
+      
   });
 
-  it('#Deve retornar um array vazio quando sem id', (done) => {
+  it('#Atualiza uma cerveja sem titulo', (done) => {
     request
-      .get('/beers/\'\'')
+      .put('/beer/91')
       .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(response => {
-        assert.equal(response.body.length, 0);
-        done();
-      });
+      .send({marca: 'marca teste', titulo: '', descricao: 'testando mocha', preco: 22, quantidade: 200, tipo: 'Lata', volume: 355, status: 'Ativo'})
+      .expect(400, done);
+  });
+
+  it('#Atualiza uma cerveja sem preço', (done) => {
+    request
+      .put('/beer/91')
+      .set('Accept', 'application/json')
+      .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: '', quantidade: 200, tipo: 'Lata', volume: 355, status: 'Ativo'})
+      .expect(400, done);
+  });
+
+  it('#Atualiza uma cerveja com o preço em formato inválido', (done) => {
+    request
+      .put('/beer/91')
+      .set('Accept', 'application/json')
+      .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 'abcde', quantidade: 200, tipo: 'Lata', volume: 355, status: 'Ativo'})
+      .expect(400, done);
+  });
+
+  it('#Atualiza uma cerveja sem quantidade', (done) => {
+    request
+      .put('/beer/91')
+      .set('Accept', 'application/json')
+      .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: '', tipo: 'Lata', volume: 355, status: 'Ativo'})
+      .expect(400, done);
+  });
+
+  it('#Atualiza uma cerveja com a quantidade em formato inválido', (done) => {
+    request
+      .put('/beer/91')
+      .set('Accept', 'application/json')
+      .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: 'abcde', tipo: 'Lata', volume: 355, status: 'Ativo'})
+      .expect(400, done);
+  });
+
+  it('#Atualiza uma cerveja sem tipo', (done) => {
+    request
+      .put('/beer/91')
+      .set('Accept', 'application/json')
+      .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: 200, tipo: '', volume: 355, status: 'Ativo'})
+      .expect(400, done);
+  });
+
+  it('#Atualiza uma cerveja sem volume', (done) => {
+    request
+      .put('/beer/91')
+      .set('Accept', 'application/json')
+      .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: 200, tipo: 'Lata', volume: '', status: 'Ativo'})
+      .expect(400, done);
+  });
+
+  it('#Atualiza uma cerveja com o volume em formato inválido', (done) => {
+    request
+      .put('/beer/91')
+      .set('Accept', 'application/json')
+      .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: 200, tipo: 'Lata', volume: 'abcd', status: 'Ativo'})
+      .expect(400, done);
+  });
+
+  it('#Atualiza uma cerveja sem status', (done) => {
+    request
+      .put('/beer/91')
+      .set('Accept', 'application/json')
+      .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: 200, tipo: 'Lata', volume: 'abcd', status: ''})
+      .expect(400, done);
+  });
+
+  it('#Atualiza uma cerveja sem descricao', (done) => {
+    request
+      .put('/beer/91')
+      .set('Accept', 'application/json')
+      .send({marca: 'marca teste', titulo: 'titulo sem descricao', descricao: '', preco: 123, quantidade: 200, tipo: 'Lata', volume: 250, status: 'Ativo'})
+      .expect(200, done);
+  });
+
+  it('#Atualiza uma cerveja com dados válidos', (done) => {
+    request
+      .put('/beer/91')
+      .set('Accept', 'application/json')
+      .send({marca: 'marca teste', titulo: 'titulo teste', descricao: 'testando mocha', preco: 123, quantidade: 200, tipo: 'Lata', volume: 355, status: 'Ativo'})
+      .expect(200, done);
   });
 });

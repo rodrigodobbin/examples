@@ -1,17 +1,18 @@
 let express = require('express');
-let load = require('express-load');
+let consign = require('consign');
 let bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 
 module.exports = () => {
   let app = express();
   
-  app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
+
   app.use(expressValidator());
 
-  load('routes', { cwd: 'app'})
-    .then('infra')
+  consign()
+    .include('controllers')
+    .then('dao')
     .then('services')
     .into(app);
 

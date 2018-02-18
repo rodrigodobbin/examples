@@ -10,7 +10,8 @@ CREATE TABLE beers (
   titulo varchar(255) NOT NULL,
   descricao text,
   tipo varchar(255) NOT NULL,
-  volume int(11) NOT NULL
+  volume int(11) NOT NULL,
+  status varchar(255) NOT NULL
 );
 
 create database examples_api_test;
@@ -25,5 +26,6 @@ CREATE TABLE beers (
   titulo varchar(255) NOT NULL,
   descricao text,
   tipo varchar(255) NOT NULL,
-  volume int(11) NOT NULL
+  volume int(11) NOT NULL,
+  status varchar(255) NOT NULL
 );
