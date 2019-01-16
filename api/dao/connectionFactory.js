@@ -4,8 +4,8 @@ function CreateDBConnection() {
   if (!process.env.NODE_ENV) {
     return mysql.createConnection({
       host: 'localhost',
-      user: 'root',
-      password: 'root',
+      user: 'dobbin',
+      password: 'dobbin',
       database: 'examples_api'
     });
   }
@@ -13,8 +13,8 @@ function CreateDBConnection() {
   if (process.env.NODE_ENV === 'test') {
     return mysql.createConnection({
       host: 'localhost',
-      user: 'root',
-      password: 'root',
+      user: 'dobbin',
+      password: 'dobbin',
       database: 'examples_api_test'
     });
   }  
