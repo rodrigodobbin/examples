@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost/examples/angular-4/upload-image/api/'
+  url: 'http://localhost/examples/angular/upload-image/api/'
 };
